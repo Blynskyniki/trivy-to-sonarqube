@@ -1,0 +1,14 @@
+{
+  "issues": [
+    {
+      "engineId": "Trivy",
+      "ruleId": "CVE-2020-15366",
+      "primaryLocation": {
+        "filePath": "node_modules/adal-node/package-lock.json",
+        "message": "CVE-2020-15366 : nodejs-ajv: prototype pollution via crafted JSON schema in ajv.validate function \n 5.3.0 => 6.12.3 \n An issue was discovered in ajv.validate() in Ajv (aka Another JSON Schema Validator) 6.12.2. A carefully crafted JSON schema could be provided that allows execution of other code by prototype pollution. (While untrusted schemas are recommended against, the worst case of an untrusted schema should be a denial of service, not execution of code.) (https://avd.aquasec.com/nvd/cve-2020-15366)"
+      },
+      "severity": "MAJOR",
+      "type": "VULNERABILITY"
+    }
+  ]
+}
