@@ -19,7 +19,7 @@ trivy image --ignorefile .trivyignore  -f json -o trivy-report.json  my-docker-i
 ## Convert data to sonarqube generic issue format 
 
 ```bash 
-trivy-to-sonarqube trivy-report.json ./my-sonarqube-report.json
+trivy-to-sonarqube -f trivy-report.json -o ./my-sonarqube-report.json
 
 ```
 
