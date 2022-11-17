@@ -1,5 +1,3 @@
-#Instructions
-
 ## Install
 
 ```bash
