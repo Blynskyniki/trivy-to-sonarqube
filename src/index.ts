@@ -21,9 +21,6 @@ function convertSeverity(trivyLevel: string): SonarIssue['severity'] {
 export async function convertReport(inputFile: string, outputFile: string):Promise<void> {
   const reportBlob = await fs.readFile(path.join(inputFile));
   const report: TryviReport | undefined = JSON.parse(reportBlob.toString() || '{}');
-  if (!report?.Results?.length) {
-    throw new Error('Empty report');
-  }
   const data: SonarIssue[] = [];
   for (const file of report?.Results || []) {
     // if exists
