@@ -1,3 +1,4 @@
+[![NPM](https://nodei.co/npm/trivy-to-sonarqube.png)](https://nodei.co/npm/trivy-to-sonarqube/)
 ## Install
 
 ```bash
