@@ -30,3 +30,5 @@ img
 .eslintrc.js
 tsconfig.json
 examples
+.releaserc
+.releaserc.json
