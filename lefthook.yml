@@ -1,0 +1,15 @@
+pre-commit:
+  parallel: true
+  commands:
+    eslint:
+      glob: "*.{ts,tsx}"
+      run: rm -rf ./dist && npx eslint --fix {staged_files}
+    types:
+      glob: "*.{ts, tsx}"
+      run: rm -rf ./dist && npx tsc  --noEmit
+commit-msg:
+  parallel: true
+  commands:
+    commitlint:
+      run: npx commitlint --edit
+

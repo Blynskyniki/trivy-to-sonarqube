@@ -32,3 +32,5 @@ tsconfig.json
 examples
 .releaserc
 .releaserc.json
+lefthook.yml
+commitlint.config.js
