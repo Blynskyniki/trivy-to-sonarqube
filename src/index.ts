@@ -1,10 +1,17 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 
-import { SonarIssue, TryviReport } from './interfaces';
+import { SonarIssue, TrivyReport ,TrivySeverity} from './interfaces';
+const ENGINE_ID ='Trivy'
+const VULNERABILITY ='VULNERABILITY'
 
-function convertSeverity(trivyLevel: string): SonarIssue['severity'] {
-  switch (trivyLevel) {
+/**
+ * Convert Severity trivy to sonarqube
+ * @param {string} level
+ * @returns {SonarIssue["severity"]}
+ */
+function convertSeverity(level:TrivySeverity): SonarIssue['severity'] {
+  switch (level) {
     case 'HIGH':
       return 'BLOCKER';
     case 'LOW':
@@ -20,33 +27,33 @@ function convertSeverity(trivyLevel: string): SonarIssue['severity'] {
 
 export async function convertReport(inputFile: string, outputFile: string):Promise<void> {
   const reportBlob = await fs.readFile(path.join(inputFile));
-  const report: TryviReport | undefined = JSON.parse(reportBlob.toString() || '{}');
+  const report: TrivyReport | undefined = JSON.parse(reportBlob.toString() || '{}');
   const data: SonarIssue[] = [];
   for (const file of report?.Results || []) {
     // if exists
     for (const issue of file?.Misconfigurations || []) {
       data.push({
-        engineId: 'Trivy',
+        engineId: ENGINE_ID,
         ruleId: issue.ID,
         primaryLocation: {
           filePath: file.Target,
           message: `${issue.ID} : ${issue.Message} => ${issue.Resolution} (${issue.PrimaryURL})`,
         },
         severity: convertSeverity(issue.Severity),
-        type: 'VULNERABILITY',
+        type: VULNERABILITY,
       });
     }
     // if exists
     for (const issue of file?.Vulnerabilities || []) {
       data.push({
-        engineId: 'Trivy',
+        engineId: ENGINE_ID,
         ruleId: issue.VulnerabilityID,
         primaryLocation: {
           filePath: file.Target,
           message: `${issue.VulnerabilityID} : ${issue.Title} \n ${issue.InstalledVersion} => ${issue.FixedVersion} \n ${issue.Description} (${issue.PrimaryURL})`,
         },
         severity: convertSeverity(issue.Severity),
-        type: 'VULNERABILITY',
+        type: VULNERABILITY,
       });
     }
   }

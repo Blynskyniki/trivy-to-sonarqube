@@ -8,8 +8,9 @@ export interface SonarIssue {
   type: 'BUG' | 'VULNERABILITY' | 'CODE_SMELL';
   severity: 'BLOCKER' | 'CRITICAL' | 'MAJOR' | 'MINOR' | 'INFO';
 }
+export type TrivySeverity = 'HIGH'|'LOW'|'CRITICAL'|'MEDIUM'
 
-export interface TryviReport {
+export interface TrivyReport {
   SchemaVersion: number;
   ArtifactName: string;
   ArtifactType: string;
@@ -37,7 +38,7 @@ export interface TryviReport {
       };
       Title: string;
       Description: string;
-      Severity: 'HIGH' | 'LOW' | 'MEDIUM' | 'CRITICAL';
+      Severity: TrivySeverity;
 
       References: string[];
       PublishedDate: string;
@@ -52,7 +53,7 @@ export interface TryviReport {
       Namespace: string;
       Query: string;
       Resolution: string;
-      Severity: 'HIGH' | 'LOW' | 'MEDIUM' | 'CRITICAL';
+      Severity: TrivySeverity;
       PrimaryURL: string;
       References: string[];
     }>;
