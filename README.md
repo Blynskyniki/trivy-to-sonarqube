@@ -1,3 +1,5 @@
+![npm](https://img.shields.io/npm/dw/trivy-to-sonarqube)
+
 [![NPM](https://nodei.co/npm/trivy-to-sonarqube.png)](https://nodei.co/npm/trivy-to-sonarqube/)
 ## Install
 

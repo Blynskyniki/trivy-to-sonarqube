@@ -26,3 +26,7 @@ shrinkwrap.yaml
 # Project sources
 src
 img
+.github
+.eslintrc.js
+tsconfig.json
+examples
